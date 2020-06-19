@@ -23,6 +23,7 @@ const SignUp = ({ signUpStart }) => {
     }
 
     signUpStart({ displayName, email, password });
+
   };
 
   const handleChange = event => {
@@ -33,7 +34,7 @@ const SignUp = ({ signUpStart }) => {
 
   return (
     <div className="signup-wrapper">
-      <h1>I do not have a account</h1>
+      <h1>I do not have an account</h1>
       <span>Sign up with your email and password</span>
       <form className='sign-up-form' onSubmit={handleSubmit}>
         <input
@@ -42,6 +43,7 @@ const SignUp = ({ signUpStart }) => {
           value={displayName}
           onChange={handleChange}
           label='Display Name'
+          placeholder= "Name"
           required
         />
         <input
@@ -50,6 +52,7 @@ const SignUp = ({ signUpStart }) => {
           value={email}
           onChange={handleChange}
           label='Email'
+          placeholder= "Email"
           required
         />
         <input
@@ -58,6 +61,7 @@ const SignUp = ({ signUpStart }) => {
           value={password}
           onChange={handleChange}
           label='Password'
+          placeholder= "Password"
           required
         />
         <input
@@ -66,6 +70,7 @@ const SignUp = ({ signUpStart }) => {
           value={confirmPassword}
           onChange={handleChange}
           label='Confirm Password'
+          placeholder= "Confirm Password"
           required
         />
         <button type='submit'>SIGN UP</button>
