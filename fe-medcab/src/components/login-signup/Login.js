@@ -31,10 +31,12 @@ class Login extends React.Component{
                 <span>Sign in with your email and Password</span>
 
                 <form onSubmit={this.handleSubmit}>              
-                   <input name='email' type='email' handleChange={this.handleChange} value={this.state.email} placeholder="email" required/> 
-                   <input name='password' type ='password' handleChange={this.handleChange} value={this.state.password}  placeholder="password" required/>
+                   <input name='email' type='email' autoComplete='username' onChange={this.handleChange} value={this.state.email} placeholder="email" required /> 
+                   <input name='password' autoComplete='current-password' type ='password' onChange={this.handleChange} value={this.state.password}  placeholder="password" required />
                    <input type="submit" />    
                 </form>
+
+
 
             </div>
         )
