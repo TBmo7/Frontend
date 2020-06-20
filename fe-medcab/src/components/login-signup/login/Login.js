@@ -7,7 +7,7 @@ class Login extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            email:'',
+            username:'',
             password:""
         }
     }
@@ -17,15 +17,17 @@ class Login extends React.Component{
     handleSubmit = e =>{
         e.preventDefault();
         this.setState({
-            email:"",
+            username:"",
             password:""
         })
         axiosWithAuth()
         .post('/login', {
-            username: "Taja",
-            password: "This!"
+            username: "user3",
+            password: "user3"
         })
-        .then(res => {console.log(res)})
+        .then(res => {console.log(res)
+            localStorage.setItem('token', res.data.token)  
+              })
         .catch(err => {console.log(err)})
 
     }

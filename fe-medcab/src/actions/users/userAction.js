@@ -2,7 +2,7 @@ import UserActionTypes from "../users/user.types"
 
 import axiosWithAuth from '../../utils/axiosWithAuth'
 
-export const logInSuccess = ( user ) =>  {
+export const logInSuccess = ( user, props ) =>  {
     return dispatch => {
       dispatch({
        type: UserActionTypes.LOG_IN_SUCCESS,
@@ -11,13 +11,14 @@ export const logInSuccess = ( user ) =>  {
       })
   axiosWithAuth()
       .post('/login', {
-        username: "Taja",
-        password: "This!"
+        username: "user3",
+        password: "user3"
       })
-      .then(res => {  
-        console.log(res)}
-        //This is where I will set localStorage
-        )
+      .then(res => { 
+        console.log(res.data)
+          localStorage.setItem('token', res.data.token)
+          // props.history.push('/')
+        })
       .catch(err =>{
           console.log(err)
         })
@@ -55,6 +56,7 @@ export const logInSuccess = ( user ) =>  {
   export const signUpStart = userCredentials => ({
     type: UserActionTypes.SIGN_UP_START,
     payload: userCredentials
+    
   });
   
   export const signUpSuccess = ({ user, additionalData }) => ({
