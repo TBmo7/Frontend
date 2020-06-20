@@ -1,9 +1,29 @@
 import UserActionTypes from "../users/user.types"
 
-export const logInSuccess = user => ({
-    type: UserActionTypes.LOG_IN_SUCCESS,
-    payload: user
-  });
+import axiosWithAuth from '../../utils/axiosWithAuth'
+
+export const logInSuccess = ( user ) =>  {
+    return dispatch => {
+      dispatch({
+       type: UserActionTypes.LOG_IN_SUCCESS,
+    payload: user 
+   
+      })
+  axiosWithAuth()
+      .post('/login', {
+        username: "Taja",
+        password: "This!"
+      })
+      .then(res => {  
+        console.log(res)}
+        //This is where I will set localStorage
+        )
+      .catch(err =>{
+          console.log(err)
+        })
+        } 
+
+  };
   
   export const logInFailure = error => ({
     type: UserActionTypes.LOG_IN_FAILURE,
