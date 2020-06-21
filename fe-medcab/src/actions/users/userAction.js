@@ -59,7 +59,7 @@ export const logInSuccess = ( user ) =>  {
     
   });
   
-  export const signUpSuccess = ( user, additionalData ) => {
+  export const signUpSuccess = ({ user, additionalData}) => {
     return dispatch => {
       dispatch({
        type: UserActionTypes.SIGN_UP_SUCCESS,
@@ -76,9 +76,9 @@ export const logInSuccess = ( user ) =>  {
     })
     .then(res =>{console.log(res.data)})
     .catch(err =>{console.log(err.response)})
-  };
+  }};
   
   export const signUpFailure = error => ({
     type: UserActionTypes.SIGN_UP_FAILURE,
     payload: error
-  });
+  })
