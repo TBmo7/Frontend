@@ -1,9 +1,30 @@
 import UserActionTypes from "../users/user.types"
 
-export const logInSuccess = user => ({
-    type: UserActionTypes.LOG_IN_SUCCESS,
-    payload: user
-  });
+import axiosWithAuth from '../../utils/axiosWithAuth'
+
+export const logInSuccess = ( user ) =>  {
+    return dispatch => {
+      dispatch({
+       type: UserActionTypes.LOG_IN_SUCCESS,
+    payload: user 
+   
+      })
+  axiosWithAuth()
+      .post('/login', {
+        username: "user3",
+        password: "user3"
+      })
+      .then(res => { 
+        console.log(res.data)
+          localStorage.setItem('token', res.data.token)
+          // props.history.push('/')
+        })
+      .catch(err =>{
+          console.log(err.response)
+        })
+        } 
+
+  };
   
   export const logInFailure = error => ({
     type: UserActionTypes.LOG_IN_FAILURE,
@@ -35,14 +56,29 @@ export const logInSuccess = user => ({
   export const signUpStart = userCredentials => ({
     type: UserActionTypes.SIGN_UP_START,
     payload: userCredentials
+    
   });
   
-  export const signUpSuccess = ({ user, additionalData }) => ({
-    type: UserActionTypes.SIGN_UP_SUCCESS,
+  export const signUpSuccess = ({ user, additionalData}) => {
+    return dispatch => {
+      dispatch({
+       type: UserActionTypes.SIGN_UP_SUCCESS,
     payload: { user, additionalData }
-  });
+   
+      })
+    // type: UserActionTypes.SIGN_UP_SUCCESS,
+    // payload: { user, additionalData },
+
+    axiosWithAuth()
+    .post('/register',{
+      username: "",
+      password:""
+    })
+    .then(res =>{console.log(res.data)})
+    .catch(err =>{console.log(err.response)})
+  }};
   
   export const signUpFailure = error => ({
     type: UserActionTypes.SIGN_UP_FAILURE,
     payload: error
-  });
+  })

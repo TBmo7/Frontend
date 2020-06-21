@@ -11,7 +11,7 @@ export const getStrains = () => {
         });
 
         axios
-        .get('http://strainapi.evanbusse.com/z744fBo/strains/search/all')
+        .get('https://medcab-backend-test.herokuapp.com/api/patients') 
         .then ( res => {
             dispatch(
                 { type: FETCH_STRAINS_SUCCESS, payload: res.data}
