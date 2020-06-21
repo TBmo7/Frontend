@@ -11,8 +11,8 @@ export const logInSuccess = ( user ) =>  {
       })
   axiosWithAuth()
       .post('/login', {
-        username: "user3",
-        password: "user3"
+        username: "",
+        password: ""
       })
       .then(res => { 
         console.log(res.data)
@@ -71,10 +71,12 @@ export const logInSuccess = ( user ) =>  {
 
     axiosWithAuth()
     .post('/register',{
-      username: "",
-      password:""
+      username: "user3",
+      password:"user3"
     })
-    .then(res =>{console.log(res.data)})
+    .then(res =>{console.log(res.data)
+      localStorage.setItem('token', res.data.token)
+    })
     .catch(err =>{console.log(err.response)})
   }};
   

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
+import axiosWithAuth from "../../../utils/axiosWithAuth";
+
 import { signUpStart } from '../../../actions/users/userAction';
 
 
@@ -29,7 +31,9 @@ const SignUp = ({ signUpStart }) => {
       username: "",
       password:""
     })
-    .then(res =>{console.log(res.data)})
+    .then(res =>{console.log(res.data)
+    localStorage.setItem('token', res.data.payload)
+    })
     .catch(err =>{console.log(err.response)})
 
 
