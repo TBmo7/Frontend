@@ -6,13 +6,13 @@ import { signUpStart } from '../../../actions/users/userAction';
 
 const SignUp = ({ signUpStart }) => {
   const [userCredentials, setUserCredentials] = useState({
-    displayName: '',
+    username: '',
     email: '',
     password: '',
     confirmPassword: ''
   });
 
-  const { displayName, email, password, confirmPassword } = userCredentials;
+  const { username, email, password, confirmPassword } = userCredentials;
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -22,7 +22,17 @@ const SignUp = ({ signUpStart }) => {
       return;
     }
 
-    signUpStart({ displayName, email, password });
+    signUpStart({ username, email, password });
+
+    axiosWithAuth()
+    .post('/register',{
+      username: "",
+      password:""
+    })
+    .then(res =>{console.log(res.data)})
+    .catch(err =>{console.log(err.response)})
+
+
 
   };
 
@@ -39,8 +49,8 @@ const SignUp = ({ signUpStart }) => {
       <form className='sign-up-form' onSubmit={handleSubmit}>
         <input
           type='text'
-          name='displayName'
-          value={displayName}
+          name='username'
+          value={username}
           onChange={handleChange}
           label='Display Name'
           placeholder= "Name"
