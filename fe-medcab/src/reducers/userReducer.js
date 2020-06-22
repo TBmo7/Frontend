@@ -19,6 +19,11 @@ const INITIAL_STATE = {
           currentUser: null,
           error: null
         };
+      case UserActionTypes.SIGN_UP_START:
+          return{
+            ...state,
+            currentUser: action.payload
+          }
       case UserActionTypes.LOG:
       case UserActionTypes.SIGN_OUT_FAILURE:
       case UserActionTypes.SIGN_UP_FAILURE:

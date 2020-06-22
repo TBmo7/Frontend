@@ -29,15 +29,13 @@ const SignUp = ({ signUpStart }) => {
     axiosWithAuth()
     .post('/register',{
       username: "",
+      email:"",
       password:""
     })
-    .then(res =>{console.log(res.data)
+    .then(res =>{
     localStorage.setItem('token', res.data.payload)
     })
-    .catch(err =>{console.log(err.response)})
-
-
-
+    .catch(err =>{console.log(err)})
   };
 
   const handleChange = event => {
@@ -75,6 +73,7 @@ const SignUp = ({ signUpStart }) => {
           value={password}
           onChange={handleChange}
           label='Password'
+          autoComplete='password'
           placeholder= "Password"
           required
         />
@@ -84,6 +83,7 @@ const SignUp = ({ signUpStart }) => {
           value={confirmPassword}
           onChange={handleChange}
           label='Confirm Password'
+          autoComplete='password'
           placeholder= "Confirm Password"
           required
         />

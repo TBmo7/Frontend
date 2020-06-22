@@ -11,8 +11,8 @@ export const logInSuccess = ( user ) =>  {
       })
   axiosWithAuth()
       .post('/login', {
-        username: "",
-        password: ""
+        username: "user3",
+        password: "user3"
       })
       .then(res => { 
         console.log(res.data)
@@ -53,11 +53,25 @@ export const logInSuccess = ( user ) =>  {
     payload: error
   });
   
-  export const signUpStart = userCredentials => ({
+  export const signUpStart =( userCredentials ) => {
+    return dispatch =>{
+      dispatch({
     type: UserActionTypes.SIGN_UP_START,
     payload: userCredentials
+      })
+      
+
+    axiosWithAuth()
+    .post('/register',{
+      username: "",
+      password:""
+    })
+    .then(res =>{console.log(res.data)
+      localStorage.setItem('token', res.data.token)
+    })
+    .catch(err =>{console.log(err)})
     
-  });
+  }};
   
   export const signUpSuccess = ({ user, additionalData}) => {
     return dispatch => {
@@ -69,15 +83,7 @@ export const logInSuccess = ( user ) =>  {
     // type: UserActionTypes.SIGN_UP_SUCCESS,
     // payload: { user, additionalData },
 
-    axiosWithAuth()
-    .post('/register',{
-      username: "user3",
-      password:"user3"
-    })
-    .then(res =>{console.log(res.data)
-      localStorage.setItem('token', res.data.token)
-    })
-    .catch(err =>{console.log(err.response)})
+ 
   }};
   
   export const signUpFailure = error => ({
