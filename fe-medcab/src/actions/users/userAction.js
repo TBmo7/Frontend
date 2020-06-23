@@ -61,15 +61,6 @@ export const logInSuccess = ( user ) =>  {
       })
       
 
-    axiosWithAuth()
-    .post('/register',{
-      username: "",
-      password:""
-    })
-    .then(res =>{console.log(res.data)
-      localStorage.setItem('token', res.data.token)
-    })
-    .catch(err =>{console.log(err)})
     
   }};
   
@@ -80,6 +71,17 @@ export const logInSuccess = ( user ) =>  {
     payload: { user, additionalData }
    
       })
+      
+    axiosWithAuth()
+    .post('/register',{
+      username: "",
+      email:"",
+      password:""
+    })
+    .then(res =>{console.log(res.data)
+      localStorage.setItem('token', res.data.token)
+    })
+    .catch(err =>{console.log(err)})
     // type: UserActionTypes.SIGN_UP_SUCCESS,
     // payload: { user, additionalData },
 
