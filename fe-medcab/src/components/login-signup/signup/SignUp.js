@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-
-
-
-
-import axiosWithAuth from "../../../utils/axiosWithAuth";
 import { signUpStart } from '../../../actions/users/userAction';
 
 
