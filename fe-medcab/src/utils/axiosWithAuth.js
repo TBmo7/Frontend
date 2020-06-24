@@ -4,7 +4,7 @@ const axiosWithAuth = () => {
     const token = localStorage.getItem('token')
 
     return axios.create({
-        baseURL: 'https://medcab-backend-test.herokuapp.com/api/auth',
+        baseURL: 'https://cors-anywhere.herokuapp.com/https://medcab-backend-test.herokuapp.com/api/auth',
         headers:{
             Authorization: token
         }

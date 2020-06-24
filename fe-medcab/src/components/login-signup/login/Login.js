@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+
 import axiosWithAuth from '../../../utils/axiosWithAuth'
 
 
@@ -28,7 +29,7 @@ class Login extends React.Component{
         .then(res => {console.log(res)
             localStorage.setItem('token', res.data.token)  
               })
-        .catch(err => {console.log(err)})
+        .catch(err => {console.log(err.response)})
 
     }
 
@@ -39,23 +40,33 @@ class Login extends React.Component{
 
  
 
-    render() {
-        return(
-            <div className="sign-in">
-                <h2>Already have an account?</h2>
-                <span>Sign in with your username and Password</span>
+render() {
+    return(
+        <div className="sign-in">
+        <h2>Already have an account?</h2>
+        <span>Sign in with your username and Password</span>
+        <form onSubmit={this.handleSubmit}>              
+                <input 
+                    name='username' 
+                    type='username' 
+                    autoComplete='username' 
+                    onChange={this.handleChange} 
+                    value={this.state.username} placeholder="username" 
+                    required 
+                /> 
 
-                <form onSubmit={this.handleSubmit}>              
-                   <input name='username' type='username' autoComplete='username' onChange={this.handleChange} value={this.state.username} placeholder="username" required /> 
-                   <input name='password' autoComplete='current-password' type ='password' onChange={this.handleChange} value={this.state.password}  placeholder="password" required />
-                   <input type="submit" />    
-                </form>
-
-
-
-            </div>
-        )
-    }
-}
+                <input 
+                    name='password' autoComplete='current-password' 
+                    type ='password' 
+                    onChange={this.handleChange} 
+                    value={this.state.password}  placeholder="password" 
+                    required 
+                />
+                
+                <input type="submit" />    
+            </form>
+        </div>
+    )
+}}
 
 export default Login;
