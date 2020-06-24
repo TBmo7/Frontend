@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import axiosWithAuth from "../../../utils/axiosWithAuth";
 
+
+
+
+import axiosWithAuth from "../../../utils/axiosWithAuth";
 import { signUpStart } from '../../../actions/users/userAction';
 
 
@@ -12,7 +15,6 @@ const SignUp = ({ signUpStart }) => {
     password: '',
   });
 
-  const { username, password } = userCredentials;
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -22,17 +24,9 @@ const SignUp = ({ signUpStart }) => {
     //   return;
     // }
 
-    signUpStart({ username, password });
+    signUpStart(userCredentials);
 
-    axiosWithAuth()
-    .post('/register',{
-      username: "",
-      password:"",
-    })
-    .then(res =>{
-    localStorage.setItem('token', res.data.payload)
-    })
-    .catch(err =>{console.log(err)})
+
   };
 
   const handleChange = event => {
@@ -42,7 +36,7 @@ const SignUp = ({ signUpStart }) => {
       { ...userCredentials, [name]: value }
       );
   };
-
+console.log(userCredentials); 
   return (
 <div className="signup-wrapper">
   <h1>I do not have an account</h1>
@@ -74,14 +68,6 @@ const SignUp = ({ signUpStart }) => {
 );
 };
 
-function mapDispatchToProps(dispatch){ 
-  console.log("Dispatch in Signup", {dispatch})
- return {
-  signUpStart: userCredentials => dispatch(signUpStart(userCredentials))
-        }
-};
-
 export default connect(
   null,
-  mapDispatchToProps
-)(SignUp);
+{signUpStart})(SignUp);

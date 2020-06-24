@@ -1,9 +1,11 @@
 import UserActionTypes from "../users/user.types"
 
 import axiosWithAuth from '../../utils/axiosWithAuth'
+import Axios from "axios";
 
-export const logInSuccess = ( username ) =>  {
-    return dispatch => {
+
+
+export const logInSuccess = ( username ) => (dispatch) => { 
       dispatch({
         type: UserActionTypes.LOG_IN_SUCCESS,
         payload: username   
@@ -21,7 +23,7 @@ export const logInSuccess = ( username ) =>  {
       .catch(err =>{
           console.log(err.response)
         })
-        }
+        
   };
   
   export const logInFailure = err => ({
@@ -51,24 +53,22 @@ export const logInSuccess = ( username ) =>  {
     payload: error
   });
   
-  export const signUpStart =( userCredentials ) => {
-    return dispatch =>{
+  export const signUpStart =( userCredentials ) => (dispatch)=> {
       dispatch({
     type: UserActionTypes.SIGN_UP_START,
     payload: userCredentials
       })    
       axiosWithAuth()
-      .post('/register',{
-        username: "",
-        password:""
-      })
+      .post('/register', userCredentials)
       .then(res =>{console.log(res.data)
         localStorage.setItem('token', res.data.token)
       })
       .catch(err =>{console.log(err.response)})
 
-  }};
+  };
   
+  
+
   export const signUpSuccess = ({ username, additionalData}) => {
     return dispatch => {
       dispatch({
