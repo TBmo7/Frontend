@@ -23,8 +23,8 @@ class Login extends React.Component{
         })
         axiosWithAuth()
         .post('/login', {
-            username: "user3",
-            password: "user3"
+            username: this.username,
+            password: this.password
         })
         .then(res => {console.log(res)
             localStorage.setItem('token', res.data.token)  

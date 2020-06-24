@@ -5,7 +5,7 @@ import Axios from "axios";
 
 
 
-export const logInSuccess = ( username ) => (dispatch) => { 
+export const logInSuccess = ( username, data ) => (dispatch) => { 
       dispatch({
         type: UserActionTypes.LOG_IN_SUCCESS,
         payload: username   
@@ -13,8 +13,8 @@ export const logInSuccess = ( username ) => (dispatch) => {
 
   axiosWithAuth()
       .post('/login', {
-        username: "user3",
-        password: "user3"
+        username: data.username,
+        password: data.password
                       })
       .then(res => { 
         console.log(res.data)

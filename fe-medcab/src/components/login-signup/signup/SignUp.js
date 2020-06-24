@@ -13,14 +13,8 @@ const SignUp = ({ signUpStart }) => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-
-    // if (password !== confirmPassword) {
-    //   alert("Passwords must match");
-    //   return;
-    // }
-
+    // password !== confirmPassword? alert("passwords must match"): ""
     signUpStart(userCredentials);
-
 
   };
 
@@ -31,7 +25,7 @@ const SignUp = ({ signUpStart }) => {
       { ...userCredentials, [name]: value }
       );
   };
-console.log(userCredentials); 
+
   return (
 <div className="signup-wrapper">
   <h1>I do not have an account</h1>
