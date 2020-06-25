@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Navbar, Card, CardImg } from 'reactstrap';
 import { Route, Link } from 'react-router-dom';
-import OrderForm from './InfoForm.js';
+import InfoForm from './InfoForm.js';
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
           <Button color='info'>Home</Button>
         </Link>
         <Link to={'/info'}>
-          {/* added the home button */}
+          {/* added the Strain button */}
           <Button color='info'>Strain</Button>
         </Link>
       </Navbar>
@@ -22,22 +22,16 @@ const App = () => {
       <Route exact path='/'>
         {/* importing the image */}
         <Card>
+          {/* inserted a picture of cannabis for header divider */}
           <CardImg src={require('./Img/bg.jpg')} />
-          <Link to={'/info'}>
-            {/* <Button
-              color='info'
-              style={{ position: 'absolute', left: '50%', top: '50%' }}
-            >
-              info
-            </Button> */}
-          </Link>
+          <Link to={'/info'} />
           {/* added the info button */}
         </Card>
       </Route>
 
-      {/* added the OrderForm to order taco */}
+      {/* added the path for info */}
       <Route path='/info'>
-        <OrderForm />
+        <InfoForm />
       </Route>
     </>
   );

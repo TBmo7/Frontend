@@ -16,11 +16,11 @@ import axios from 'axios';
 
 const StrainForm = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  // Making the toggler change by seeting it to now state and previus state
+  // Making the toggler change by seeting it to now state and previous state
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   return (
     <>
-      {/* Making the header for the Taco order form */}
+      {/* Making the header form */}
       <Card color='info'>
         <h2 style={{ color: 'white', margin: '0 auto' }}>
           Please Enter Your Information
@@ -32,7 +32,7 @@ const StrainForm = () => {
         />
       </Card>
 
-      {/* the form itself */}
+      {/* temp styling the form itself */}
 
       <Form style={{ margin: '5%' }}>
         {/* A name text input field */}
@@ -42,7 +42,7 @@ const StrainForm = () => {
           <Input type='name' name='name' />
         </FormGroup>
 
-        {/* Dropdown form component for taco size (with a quantity #) */}
+        {/* Dropdown form component*/}
         <FormGroup>
           {/* This toggles between dropdown open and close */}
           <Dropdown isOpen={dropdownOpen} toggle={toggle}>
@@ -70,7 +70,7 @@ const StrainForm = () => {
           </Dropdown>
         </FormGroup>
 
-        {/* making the sauce selection radio button */}
+        {/* making the selection with radio button */}
         <legend>Desired Cannabis effect</legend>
         <FormGroup tag='fieldset'>
           <FormGroup check>
@@ -123,7 +123,7 @@ const StrainForm = () => {
           </FormGroup>
         </FormGroup>
 
-        {/* making the toppping selection checkbox */}
+        {/* making the selection checkbox */}
         <legend>Continued with checkbox</legend>
         <FormGroup check>
           <Label check>
