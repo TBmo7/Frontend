@@ -13,8 +13,8 @@ export const logInSuccess = ( username, data ) => (dispatch) => {
 
   axiosWithAuth()
       .post('/login', {
-        username: "JooWoonK",
-        password: "JWK!"
+        username: "",
+        password: ""
                       })
       .then(res => { 
         console.log(res.data)
