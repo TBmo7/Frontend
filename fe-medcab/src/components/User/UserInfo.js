@@ -5,7 +5,6 @@ import Axios from 'axios';
 
 const initialCredentials ={
     username: "",
-    password:""
 };
 
 const UserInfo = () =>{
