@@ -1,34 +1,34 @@
 import UserActionTypes from "../users/user.types"
 
 import axiosWithAuth from '../../utils/axiosWithAuth'
+import Axios from "axios";
 
-export const logInSuccess = ( user ) =>  {
-    return dispatch => {
+
+
+export const logInSuccess = ( username, data ) => (dispatch) => { 
       dispatch({
-       type: UserActionTypes.LOG_IN_SUCCESS,
-    payload: user 
-   
-      })
+        type: UserActionTypes.LOG_IN_SUCCESS,
+        payload: username   
+               })
+
   axiosWithAuth()
       .post('/login', {
-        username: "user3",
-        password: "user3"
-      })
+        username: "JooWoonK",
+        password: "JWK!"
+                      })
       .then(res => { 
         console.log(res.data)
-          localStorage.setItem('token', res.data.token)
-          // props.history.push('/')
+        localStorage.setItem('token', res.data.token)
         })
       .catch(err =>{
           console.log(err.response)
         })
-        } 
-
+        
   };
   
-  export const logInFailure = error => ({
+  export const logInFailure = err => ({
     type: UserActionTypes.LOG_IN_FAILURE,
-    payload: error
+    payload: err.response
   });
   
   export const emailLogInStart = emailAndPassword => ({
@@ -53,32 +53,38 @@ export const logInSuccess = ( user ) =>  {
     payload: error
   });
   
-  export const signUpStart = userCredentials => ({
+  export const signUpStart =( userCredentials ) => (dispatch)=> {
+      dispatch({
     type: UserActionTypes.SIGN_UP_START,
     payload: userCredentials
-    
-  });
+      })    
+      axiosWithAuth()
+      .post('/register', userCredentials)
+      .then(res =>{console.log(res.data)
+        localStorage.setItem('token', res.data.token)
+      })
+      .catch(err =>{console.log(err.response)})
+
+  };
   
-  export const signUpSuccess = ({ user, additionalData}) => {
+  
+
+  export const signUpSuccess = ({ username, additionalData}) => {
     return dispatch => {
       dispatch({
-       type: UserActionTypes.SIGN_UP_SUCCESS,
-    payload: { user, additionalData }
+        
+    type: UserActionTypes.SIGN_UP_SUCCESS,
+    payload: { username, additionalData }
    
       })
-    // type: UserActionTypes.SIGN_UP_SUCCESS,
-    // payload: { user, additionalData },
-
-    axiosWithAuth()
-    .post('/register',{
-      username: "",
-      password:""
-    })
-    .then(res =>{console.log(res.data)})
-    .catch(err =>{console.log(err.response)})
-  }};
+  }
+};
   
-  export const signUpFailure = error => ({
-    type: UserActionTypes.SIGN_UP_FAILURE,
-    payload: error
-  })
+  export const signUpFailure =( err )=> {
+    return dispatch =>{
+       dispatch ({
+          type: UserActionTypes.SIGN_UP_FAILURE,
+    payload: err.response
+         })
+    }   
+  }
