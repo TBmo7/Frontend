@@ -1,3 +1,4 @@
+permalink: /index.html
 # Frontend
 This is a link to our PVD:
 
