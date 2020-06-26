@@ -1,4 +1,4 @@
-permalink: /index.html
+permalink: /fe-medcab/index.html
 # Frontend
 This is a link to our PVD:
 
