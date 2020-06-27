@@ -12,7 +12,7 @@ import {
   DropdownItem,
   Label,
 } from 'reactstrap';
-import axios from 'axios';
+// import axios from 'axios';
 
 const StrainForm = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
